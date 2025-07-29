@@ -114,6 +114,30 @@ final class WP_Block_Patterns_Registry {
 				);
 				return false;
 			}
+
+			// Block Validation to check if blocks used in the pattern are allowed.
+			$blocks         = parse_blocks( $pattern_properties['content'] );
+			$block_names    = wp_list_pluck( $blocks, 'blockName' );
+			$allowed_blocks = apply_filters( 'allowed_block_types_all', true );
+			$allowed_blocks = array_flip( $allowed_blocks );
+
+			if ( is_array( $allowed_blocks ) ) {
+				foreach ( $block_names as $block_name ) {
+					if ( ! isset( $allowed_blocks[ $block_name ] ) ) {
+						_doing_it_wrong(
+							__METHOD__,
+							sprintf(
+								/* translators: %s: Block name. */
+								__( 'Pattern "%1$s" contains disallowed block "%2$s".' ),
+								$pattern_name,
+								$block_name
+							),
+							'6.9.0'
+						);
+						return false;
+					}
+				}
+			}
 		}
 
 		$pattern = array_merge(

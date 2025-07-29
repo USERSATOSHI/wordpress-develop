@@ -119,15 +119,15 @@ final class WP_Block_Patterns_Registry {
 			$blocks         = parse_blocks( $pattern_properties['content'] );
 			$block_names    = wp_list_pluck( $blocks, 'blockName' );
 			$allowed_blocks = apply_filters( 'allowed_block_types_all', true );
-			$allowed_blocks = array_flip( $allowed_blocks );
 
 			if ( is_array( $allowed_blocks ) ) {
+				$allowed_blocks = array_flip( $allowed_blocks );
 				foreach ( $block_names as $block_name ) {
 					if ( ! isset( $allowed_blocks[ $block_name ] ) ) {
 						_doing_it_wrong(
 							__METHOD__,
 							sprintf(
-								/* translators: %s: Block name. */
+								/* translators: %1$s: Pattern name, %2$s: Block name. */
 								__( 'Pattern "%1$s" contains disallowed block "%2$s".' ),
 								$pattern_name,
 								$block_name
@@ -137,6 +137,17 @@ final class WP_Block_Patterns_Registry {
 						return false;
 					}
 				}
+			} else if ( ! $allowed_blocks ) {
+				_doing_it_wrong(
+					__METHOD__,
+					sprintf(
+						/* translators: %s: Pattern name. */
+						__( 'Pattern "%1$s" contains blocks, but all blocks are disallowed.' ),
+						$pattern_name
+					),
+					'6.9.0'
+				);
+				return false;
 			}
 		}
 

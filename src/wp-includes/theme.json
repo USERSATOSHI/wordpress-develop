@@ -308,6 +308,7 @@
 			"textAlign": true,
 			"textDecoration": true,
 			"textTransform": true,
+			"wordBreak": true,
 			"writingMode": false
 		},
 		"blocks": {

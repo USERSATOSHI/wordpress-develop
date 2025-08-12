@@ -289,6 +289,7 @@ class WP_Theme_JSON {
 		'--wp--style--root--padding-left'   => array( 'spacing', 'padding', 'left' ),
 		'text-decoration'                   => array( 'typography', 'textDecoration' ),
 		'text-transform'                    => array( 'typography', 'textTransform' ),
+		'word-break'                        => array( 'typography', 'wordBreak' ),
 		'filter'                            => array( 'filter', 'duotone' ),
 		'box-shadow'                        => array( 'shadow' ),
 		'writing-mode'                      => array( 'typography', 'writingMode' ),
@@ -466,6 +467,7 @@ class WP_Theme_JSON {
 			'textColumns'      => null,
 			'textDecoration'   => null,
 			'textTransform'    => null,
+			'wordBreak'        => null,
 			'writingMode'      => null,
 		),
 	);
@@ -570,6 +572,7 @@ class WP_Theme_JSON {
 			'textColumns'    => null,
 			'textDecoration' => null,
 			'textTransform'  => null,
+			'wordBreak'      => null,
 			'writingMode'    => null,
 		),
 		'css'        => null,

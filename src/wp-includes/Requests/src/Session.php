@@ -269,6 +269,10 @@ class Session {
 		throw new \LogicException( __CLASS__ . ' should never be unserialized' );
 	}
 
+	public function __unserialize() {
+		throw new \LogicException( __CLASS__ . ' should never be unserialized' );
+	}
+
 	/**
 	 * Merge a request's data with the default data
 	 *

@@ -100,4 +100,8 @@ class Hooks implements HookManager {
 	public function __wakeup() {
 		throw new \LogicException( __CLASS__ . ' should never be unserialized' );
 	}
+
+	public function __unserialize() {
+		throw new \LogicException( __CLASS__ . ' should never be unserialized' );
+	}
 }

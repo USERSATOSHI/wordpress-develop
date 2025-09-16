@@ -106,4 +106,13 @@ final class WP_Block_Bindings_Source {
 	public function __wakeup() {
 		throw new \LogicException( __CLASS__ . ' should never be unserialized' );
 	}
+
+	/**
+	 * Unserialize magic method.
+	 *
+	 * @since 6.9.0
+	 */
+	public function __unserialize() {
+		throw new \LogicException( __CLASS__ . ' should never be unserialized' );
+	}
 }

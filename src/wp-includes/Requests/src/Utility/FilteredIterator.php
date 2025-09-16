@@ -70,6 +70,15 @@ final class FilteredIterator extends ArrayIterator {
 	}
 
 	/**
+	 * Perform cleanup tasks.
+	 *
+	 * same as __wakeup, but used as PHP 8.5 deprecates __wakeup.
+	 */
+	public function __unserialize() {
+		unset($this->callback);
+	}
+
+	/**
 	 * Get the current item's value after filtering
 	 *
 	 * @return string

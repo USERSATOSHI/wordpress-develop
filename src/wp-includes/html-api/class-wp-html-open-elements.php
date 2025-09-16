@@ -849,4 +849,13 @@ class WP_HTML_Open_Elements {
 	public function __wakeup() {
 		throw new \LogicException( __CLASS__ . ' should never be unserialized' );
 	}
+
+	/**
+	 * Unserialize magic method.
+	 *
+	 * @since 6.9.0
+	 */
+	public function __unserialize() {
+		throw new \LogicException( __CLASS__ . ' should never be unserialized' );
+	}
 }

@@ -800,6 +800,28 @@ final class WP_Theme implements ArrayAccess {
 	}
 
 	/**
+	 * Perform reinitialization tasks.
+	 *
+	 * Prevents a callback from being injected during unserialization of an object.
+	 *
+	 * @since 6.9.0
+	 */
+	public function __unserialize() {
+		if ( $this->parent && ! $this->parent instanceof self ) {
+			throw new UnexpectedValueException();
+		}
+		if ( $this->headers && ! is_array( $this->headers ) ) {
+			throw new UnexpectedValueException();
+		}
+		foreach ( $this->headers as $value ) {
+			if ( ! is_string( $value ) ) {
+				throw new UnexpectedValueException();
+			}
+		}
+		$this->headers_sanitized = array();
+	}
+
+	/**
 	 * Adds theme data to cache.
 	 *
 	 * Cache entries keyed by the theme and the type of data.

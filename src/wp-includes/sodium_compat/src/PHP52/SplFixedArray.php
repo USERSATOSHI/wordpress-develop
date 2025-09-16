@@ -186,4 +186,11 @@ class SplFixedArray implements Iterator, ArrayAccess, Countable
     {
         // NOP
     }
+
+    /**
+     * Do nothing.
+     */
+     public function __unserialize() {
+		 // NOP
+	 }
 }
